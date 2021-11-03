@@ -12,7 +12,7 @@ POSTGRES_PASSWORD=password123
 BCRYPT_PASSWORD=your-secret-BCRYPT_PASSWORD
 SALT_ROUNDS=10
 TOKEN_SECRET=alohomora123!
-ENV=test
+ENV=dev
 
 
 ## Getting Started

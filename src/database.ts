@@ -6,10 +6,10 @@ dotenv.config();
 const {
     POSTGRES_HOST,
     POSTGRES_DB,
-    POSTGRES_TEST_DB,
     POSTGRES_USER,
     POSTGRES_PASSWORD,
-    ENV
+    POSTGRES_TEST_DB,
+    ENV,
 } = process.env;
 
 
