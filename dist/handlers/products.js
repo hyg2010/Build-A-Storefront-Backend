@@ -115,7 +115,7 @@ var destroy = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
 var product_routes = function (app) {
     app.get('/products', index);
     app.get('/products/:id', show);
-    app.post('/products', verifyauthtoken_1["default"], create);
+    app.post('/products', create);
     app["delete"]('/products', verifyauthtoken_1["default"], destroy);
 };
 exports["default"] = product_routes;

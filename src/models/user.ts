@@ -17,7 +17,7 @@ export class UserStore {
   async index(): Promise<User[]> {
     try {
       const conn = await client.connect()
-      const sql = 'SELECT * FROM User'
+      const sql = 'SELECT * FROM users'
       const result = await conn.query(sql)
       conn.release()
       return result.rows
@@ -33,7 +33,7 @@ async show(id: number): Promise<User> {
       conn.release()
   return result.rows[0]
   } catch (err) {
-      throw new Error(`Could not get User ${id}. Error: ${err}`)
+      throw new Error(`Could not get user ${id}. Error: ${err}`)
   }
 }
 

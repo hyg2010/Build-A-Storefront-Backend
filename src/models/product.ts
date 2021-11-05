@@ -25,9 +25,11 @@ async show(id: string): Promise<Product> {
         const conn = await client.connect();
         const result = await conn.query(sql, [id]);
         conn.release();
-    return result.rows[0];
+        const product = result.rows[0]
+
+    return product
     } catch (err) {
-        throw new Error(`Could not get product ${id}. Error: ${err}`);
+    throw new Error(`Could not get product ${id}. Error: ${err}`);
     }
 }
 
@@ -42,7 +44,7 @@ async create(product: Product): Promise<Product> {
 
     return added_product;
     } catch (err)  {
-        throw new Error(`Could not add new product ${name}. Error: ${err}`);
+        throw new Error(`Could not add new product ${product.name}. Error: ${err}`);
     }
 }
 
