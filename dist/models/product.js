@@ -70,7 +70,7 @@ var ProductStore = /** @class */ (function () {
     };
     ProductStore.prototype.show = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var sql, conn, result, product, err_2;
+            var sql, conn, result, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -83,8 +83,7 @@ var ProductStore = /** @class */ (function () {
                     case 2:
                         result = _a.sent();
                         conn.release();
-                        product = result.rows[0];
-                        return [2 /*return*/, product];
+                        return [2 /*return*/, result.rows[0]];
                     case 3:
                         err_2 = _a.sent();
                         throw new Error("Could not get product " + id + ". Error: " + err_2);
@@ -93,9 +92,9 @@ var ProductStore = /** @class */ (function () {
             });
         });
     };
-    ProductStore.prototype.create = function (product) {
+    ProductStore.prototype.create = function (p) {
         return __awaiter(this, void 0, void 0, function () {
-            var sql, conn, result, added_product, err_3;
+            var sql, conn, result, product, err_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -104,15 +103,15 @@ var ProductStore = /** @class */ (function () {
                         return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
-                        return [4 /*yield*/, conn.query(sql, [product.name, product.price])];
+                        return [4 /*yield*/, conn.query(sql, [p.name, p.price])];
                     case 2:
                         result = _a.sent();
-                        added_product = result.rows[0];
+                        product = result.rows[0];
                         conn.release();
-                        return [2 /*return*/, added_product];
+                        return [2 /*return*/, product];
                     case 3:
                         err_3 = _a.sent();
-                        throw new Error("Could not add new product " + product.name + ". Error: " + err_3);
+                        throw new Error("Could not add new product " + p.name + ". Error: " + err_3);
                     case 4: return [2 /*return*/];
                 }
             });

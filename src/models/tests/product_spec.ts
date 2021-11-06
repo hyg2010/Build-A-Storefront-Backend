@@ -1,12 +1,9 @@
-import { Product, ProductStore } from '../product';
-import app from '../../server';
 import { idText } from 'typescript';
+import { Product, ProductStore } from '../product';
 
-const store = new ProductStore();
-let idnumber: number
+const store = new ProductStore;
 
-
-describe('Product Model', () => {
+describe("Product Model", () => {
   it('should have an index method', () => {
     expect(store.index).toBeDefined();
   });
@@ -20,38 +17,43 @@ describe('Product Model', () => {
   });
 
   it('should have a delete method', () => {
-    expect(store.delete).toBeDefined(); 
+    expect(store.delete).toBeDefined();
   });
 
   it('create method should add a product', async () => {
-    const newProduct = await store.create({
-      name: 'shoes',
-      price: 19
+    const result = await store.create({
+      name: 'newproduct',
+      price: 1
     });
-    idnumber = newProduct.id as number
-    expect(newProduct).toEqual({
-      id: idnumber,
-      name: 'shoes',
-      price: 19
-    });
+  expect(result).toEqual({
+    id: 1,
+    name: 'newproduct',
+    price: 1
   });
+});
 
+it('index method should return a list of products', async () => {
+  const result = await store.index();
+  expect(result).toEqual([{
+    id: 1,
+    name: "newproduct",
+    price: 1
+  }]);
+});
 
-  it('index method should return a list of products', async () => {
-    const result = await store.index();
-    expect(result).toEqual([{
-      id: idnumber,
-      name: 'shoes',
-      price: 19
-    }]);
+it('show method should return the correct product', async () => {
+  const result = await store.show('1');
+  expect(result).toEqual({
+    id: 1,
+    name: 'newproduct',
+    price: 1
   });
-  it('delete method should remove the product', async () => {
-    await store.delete('');
-    const result = await store.index()
+});
 
-    expect(result).toEqual([]);
+it('delete method should remove the product', async () => {
+  store.delete('1');
+  const result = await store.index()
 
-  });
-
-
+  expect(result).toEqual([]);
+});
 });
