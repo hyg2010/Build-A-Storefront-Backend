@@ -66,7 +66,7 @@ var show = function (req, res) { return __awaiter(void 0, void 0, void 0, functi
     var product;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, store.show(req.params.id)];
+            case 0: return [4 /*yield*/, store.show(req.body.id)];
             case 1:
                 product = _a.sent();
                 res.json(product);

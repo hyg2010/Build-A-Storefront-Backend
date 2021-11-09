@@ -27,7 +27,7 @@ export class UserStore {
 }
 async show(id: number): Promise<User> {
   try {
-      const sql = 'SELECT * FROM User WHERE id=($1)'
+      const sql = 'SELECT * FROM users WHERE id=($1)'
       const conn = await client.connect()
       const result = await conn.query(sql, [id])
       conn.release()

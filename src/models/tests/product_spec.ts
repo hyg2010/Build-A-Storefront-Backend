@@ -1,7 +1,7 @@
-import { idText } from 'typescript';
-import { Product, ProductStore } from '../product';
+import { ProductStore } from '../product';
 
-const store = new ProductStore;
+const store = new ProductStore();
+
 
 describe("Product Model", () => {
   it('should have an index method', () => {
@@ -36,13 +36,13 @@ it('index method should return a list of products', async () => {
   const result = await store.index();
   expect(result).toEqual([{
     id: 1,
-    name: "newproduct",
+    name: 'newproduct',
     price: 1
   }]);
 });
 
 it('show method should return the correct product', async () => {
-  const result = await store.show('1');
+  const result = await store.show(1);
   expect(result).toEqual({
     id: 1,
     name: 'newproduct',
@@ -51,7 +51,7 @@ it('show method should return the correct product', async () => {
 });
 
 it('delete method should remove the product', async () => {
-  store.delete('1');
+  store.delete(1);
   const result = await store.index()
 
   expect(result).toEqual([]);
