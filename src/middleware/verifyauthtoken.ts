@@ -9,6 +9,7 @@ const verifyAuthToken = (req: Request, res: Response, next: NextFunction) => {
     try {
         const authorizationHeader = req.headers.authorization || ''
         const token = authorizationHeader.split(' ')[1]
+        
         jwt.verify(token, token_secret)
         next();
     } catch (error) {

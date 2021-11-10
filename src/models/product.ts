@@ -51,7 +51,6 @@ async delete(id: number): Promise<Product> {
     const sql = 'DELETE FROM products WHERE id=($1)';
     const conn = await client.connect();
     const result = await conn.query(sql, [id]);
-
     const product = result.rows[0];
 
     conn.release();

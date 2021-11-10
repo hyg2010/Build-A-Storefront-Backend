@@ -1,5 +1,5 @@
-import { UserStore } from '../user'; 
+// import { UserStore } from '../user'; 
 
-const store = new UserStore();
+// const store = new UserStore();
 
 
