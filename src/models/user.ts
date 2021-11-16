@@ -11,7 +11,6 @@ export type User = {
 };
 
 export class UserStore {
-  
   async index(): Promise<User[]> {
     try {
       const conn = await client.connect();
@@ -57,6 +56,19 @@ async create (u: User): Promise<User> {
     throw new Error(`unable to create user (${u.username}): ${err}`)
   }
 
+}
+
+async delete(id: number): Promise<User> {
+  try {
+  const sql = 'DELETE FROM users WHERE id=($1)';
+  const conn = await client.connect();
+  const result = await conn.query(sql, [id]);
+  const user = result.rows[0];
+  conn.release();
+  return user;
+  } catch (err) {
+      throw new Error(`Could not delete user ${id}. Error: ${err}`);
+  }
 }
 
 async authenticate(username: string, password: string): Promise<User | null> {

@@ -1,6 +1,8 @@
-import { OrderStore } from '../order';
-import { UserStore } from '../user';
-import { ProductStore } from '../product';
+// import { OrderStore } from '../order';
+// import { UserStore } from '../user';
+// import { ProductStore } from '../product';
 
-const store = new OrderStore();
+// const orderstore = new OrderStore();
+// const productstore = new ProductStore();
+// const userstore = new UserStore();
 

@@ -1,7 +1,7 @@
 import express, {Request, Response } from 'express'
 import { User, UserStore } from '../models/user'
 import jwt from 'jsonwebtoken';
-
+import verifyAuthToken from '../middleware/verifyauthtoken';
 
 const store = new UserStore()
 const token_secret = process.env.TOKEN_SECRET!;
@@ -50,11 +50,17 @@ const authenticate = async (req: Request, res: Response) => {
         res.json({ error })
     }
   }
+  const destroy = async (req: Request, res: Response) => {
+    const deleted = await store.delete(req.body.id)
+    res.json(deleted)
+}
 const userRoutes = (app: express.Application) => {
     app.get('/users', index)
     app.get('/users/{:id}', show)
     app.post('/users', create)
     app.post('/users/authenticate/:id', authenticate)
+    app.delete('/useres', verifyAuthToken, destroy);
+
 }
 
 
