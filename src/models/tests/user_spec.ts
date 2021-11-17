@@ -35,21 +35,14 @@ expect(user.username).toMatch('henok1');
     const authenticateUser = await store.authenticate('henok1','password123');
     expect(authenticateUser).toBeTruthy
   });
-it('index method should return a list of users', async () => {
-  const result = await store.index();
-  expect(result).toContain(jasmine.objectContaining({
-    id: 1,
-    username: 'henok1'
-}));
-});
+
 
 
 it('show method should return the correct user', async () => {
   const result = await store.show('1');
   expect(result).toEqual({
     id: 1,
-    username: 'henok1',
-    password: 'password123'
+    username: 'henok1'
   });
 
 it('delete method should remove the user', async () => {
