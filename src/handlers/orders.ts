@@ -3,7 +3,7 @@ import verifyAuthToken from '../middleware/verifyauthtoken';
 import { Order, OrderStore } from '../models/order'
 
 
-const store = new OrderStore()
+const store = new OrderStore();
 
 const index = async (_req: Request, res: Response) => {
     const orders = await store.index()
@@ -16,14 +16,14 @@ const show = async (_req: Request, res: Response) => {
     res.json(orders)
 }
 
-const create = async (_req: Request, res: Response) => {
+const create = async (req: Request, res: Response) => {
     const order: Order = {
-        user_id: _req.body.user_id,
-        status: "active", 
+        user_id: req.body.user_id,
+        status: "active"
     }
     try {
-        const newOrder = await store.create(order)
-        res.json(newOrder);
+        const newOrder = await store.create(order);
+         res.json(newOrder);
     } catch(err) {
         res.status(400);
         res.json(err);

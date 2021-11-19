@@ -29,7 +29,7 @@ const create = async (req: Request, res: Response) => {
     };
     try {
         const newUser = await store.create(user)
-        res.json(newUser)
+        return res.json(newUser)
     } catch(err) {
         res.status(400)
         res.json(err)
@@ -42,7 +42,7 @@ const authenticate = async (req: Request, res: Response) => {
       password: req.body.password,
     }
     try {
-        const u = await store.authenticate(user.username)
+        const u = await store.authenticate(user.username, user.password)
         var token = jwt.sign({ user: u }, token_secret);
         res.json(token)
     } catch(error) {

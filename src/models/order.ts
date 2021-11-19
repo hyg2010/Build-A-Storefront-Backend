@@ -6,6 +6,7 @@ export type Order = {
     user_id: string;
 }
 
+
 export class OrderStore {
     async index(): Promise<Order[]> {
      try {
@@ -35,29 +36,29 @@ async show(id: number): Promise<Order> {
 
 async create(OrderStore: Order): Promise<Order> {
     try {
-    const sql = 'INSERT INTO Orders (status, user_id) VALUES($1, $2) RETURNING *';
+    const sql = 'INSERT INTO Orders (user_id, status) VALUES($1, $2) RETURNING *';
     const conn = await client.connect();
-    const result = await conn.query(sql, [OrderStore.id, OrderStore.status, OrderStore.user_id])
+    const result = await conn.query(sql, [OrderStore.status, OrderStore.user_id])
     const order = result.rows[0];
     conn.release();
     return order;
     } catch (err)  {
-     throw new Error(`Could not add new order ${OrderStore.id}. Error: ${err}`)
+     throw new Error(`Could not add new order ${OrderStore.user_id}. Error: ${err}`)
     }
 }
 
 
 
-async addProduct(quantity: number, orderId: string, productId: string): Promise<Order> {
+async addProduct(quantity: number, order_id: string, product_id: string): Promise<Order> {
     try {
-      const sql = 'INSERT INTO order_products (quantity, order_id, product_id) VALUES($1, $2, $3) RETURNING *'
+      const sql = 'INSERT INTO order_products (quantity, order_id, product_id) VALUES($1, $2, $3) RETURNING *';
       const conn = await client.connect()
-      const result = await conn.query(sql, [quantity, orderId, productId])
+      const result = await conn.query(sql, [quantity, order_id, product_id])
       const order = result.rows[0]
       conn.release()
       return order
     } catch (err) {
-      throw new Error(`Could not add product ${productId} to order ${orderId}: ${err}`)
+      throw new Error(`Could not add product ${product_id} to order ${order_id}: ${err}`)
     }
 }
 
@@ -76,3 +77,5 @@ async delete(id: number): Promise<Order> {
     }
 }
 }
+
+
