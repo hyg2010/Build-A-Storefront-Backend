@@ -79,8 +79,8 @@ it('should show the correct order', async () => {
   it('addProduct method should add a product', async () => {
     const result = await ostore.addProduct({
       quantity: 1,
-      orderId: '1',
-      productId: '1'
+      order_id: '1',
+      product_id: '1'
     });
   expect(result).toEqual({
     id: 1,
