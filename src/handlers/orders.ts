@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express'
 import verifyAuthToken from '../middleware/verifyauthtoken';
-import { Order, OrderStore } from '../models/order'
+import { addProduct, Order, OrderStore } from '../models/order'
 
 
 const store = new OrderStore();
@@ -31,19 +31,21 @@ const create = async (req: Request, res: Response) => {
 };
 
 const addProduct = async (_req: Request, res: Response) => {
-    const orderId: string = _req.params.id
-    const productId: string = _req.body.productId
-    const quantity: number = parseInt(_req.body.quantity)
+    const add: addProduct = {
+     order_id: _req.params.id,
+     product_id:  _req.body.product_id,
+     quantity: _req.body.quantity,
+    };
 
-
-try {
-    const addedProduct = await store.addProduct(quantity, orderId, productId);
-    res.json(addedProduct)
-} catch(err) {
-    res.status(400)
-    res.json(err)
-}
-}
+    try {
+      const addedProduct = await store.addProduct(add)
+      res.json(addedProduct)
+    } catch(err) {
+      res.status(400)
+      res.json(err)
+    }
+  } 
+  
 const destroy = async (req: Request, res: Response) => {
     const deleted = await store.delete(req.body.id)
     res.json(deleted)

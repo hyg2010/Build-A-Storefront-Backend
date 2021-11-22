@@ -2,9 +2,11 @@ import { OrderStore } from '../order';
 import { UserStore } from '../user';
 import { ProductStore } from '../product';
 
+
 const ostore = new OrderStore();
 const productstore = new ProductStore();
 const userstore = new UserStore();
+
 
 describe('Order Model', () => {
     beforeAll(async () => {
@@ -22,11 +24,11 @@ describe('Order Model', () => {
             user_id: 'henok1',
             status: 'active',    
         });
-        await ostore.addProduct({
-            quantity: 1,
-            order_id: '1',
-            product_id: '1' 
-        });
+       await ostore.addProduct({
+           quantity: 1,
+           orderId: '1',
+           productId: '1'
+       })
     });
 
   it('should have an index method', () => {
@@ -79,14 +81,14 @@ it('should show the correct order', async () => {
   it('addProduct method should add a product', async () => {
     const result = await ostore.addProduct({
       quantity: 1,
-      order_id: '1',
-      product_id: '1'
+      orderId: '1',
+      productId: '1'
     });
   expect(result).toEqual({
     id: 1,
     quantity: 1,
-    order_id: '1',
-    product_id: '1'
+    orderId: '1',
+    productId: '1'
   });
 });
 
