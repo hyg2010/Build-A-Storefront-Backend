@@ -3,7 +3,7 @@ import { UserStore } from '../user';
 import { ProductStore } from '../product';
 
 
-const ostore = new OrderStore();
+const orderstore = new OrderStore();
 const productstore = new ProductStore();
 const userstore = new UserStore();
 
@@ -19,39 +19,29 @@ describe('Order Model', () => {
             name: 'newproduct',
             price: 4 
         });
-
-        await ostore.create({
-            user_id: 'henok1',
-            status: 'active',    
-        });
-       await ostore.addProduct({
-           quantity: 1,
-           orderId: '1',
-           productId: '1'
-       })
     });
-
+    
   it('should have an index method', () => {
-    expect(ostore.index).toBeDefined();
+    expect(orderstore.index).toBeDefined();
   });
 
   it('should have a show method', () => {
-    expect(ostore.show).toBeDefined();
+    expect(orderstore.show).toBeDefined();
   });
 
   it('should have a create method to add order', () => {
-    expect(ostore.create).toBeDefined();
+    expect(orderstore.create).toBeDefined();
   });
 
   it('should add product method', () => {
-      expect(ostore.addProduct).toBeDefined();
+    expect(orderstore.addProduct).toBeDefined();
   })
   it('should have a delete method', () => {
-    expect(ostore.delete).toBeDefined();
+    expect(orderstore.delete).toBeDefined();
   });
 
   it('create method should add an order', async () => {
-    const result = await ostore.create({
+    const result = await orderstore.create({
         user_id: 'henok1',
         status: 'active',
     });
@@ -61,7 +51,7 @@ describe('Order Model', () => {
     });
 
 it('index method should return a list of orders', async () => {
-  const result = await ostore.index();
+  const result = await orderstore.index();
   expect(result).toEqual([{
     id: 1,
     status: 'active',
@@ -70,7 +60,7 @@ it('index method should return a list of orders', async () => {
 });
   
 it('should show the correct order', async () => {
-    const result = await ostore.show(1);
+    const result = await orderstore.show(1);
     expect(result).toEqual({
         id: 1,
         status: 'active',
@@ -79,22 +69,24 @@ it('should show the correct order', async () => {
   });
 
   it('addProduct method should add a product', async () => {
-    const result = await ostore.addProduct({
+    const result = await orderstore.addProduct({
       quantity: 1,
-      orderId: '1',
-      productId: '1'
+      order_id: '1',
+      product_id: '1'
     });
   expect(result).toEqual({
     id: 1,
     quantity: 1,
-    orderId: '1',
-    productId: '1'
+    order_id: 1,
+    product_id: 1,
+    user_id: 1,
+    status: 'active'
   });
 });
 
 it('delete method should remove the product', async () => {
-  ostore.delete(1);
-  const result = await ostore.index()
+orderstore.delete(1);
+  const result = await orderstore.index()
   expect(result).toEqual([]);
 });
   

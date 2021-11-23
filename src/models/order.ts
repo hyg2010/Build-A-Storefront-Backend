@@ -55,7 +55,7 @@ async create(OrderStore: Order): Promise<Order> {
 
 
 
-async addProduct(add: addProduct): Promise<addProduct> {
+async addProduct(add: addProduct): Promise<{id?: number; user_id: number; status?: string; quantity:number; order_id: number; product_id: number}> {
     // get order to see if it is open
     try {
       const ordersql = 'SELECT * FROM orders WHERE id=($1)'
