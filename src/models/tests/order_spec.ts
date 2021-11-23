@@ -46,6 +46,7 @@ describe('Order Model', () => {
         status: 'active',
     });
     expect(result).toEqual({
+        id: 1,
         user_id: 'henok1',
         status: 'active'
     });
