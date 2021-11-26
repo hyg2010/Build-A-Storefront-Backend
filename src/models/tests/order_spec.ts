@@ -20,7 +20,7 @@ describe('Order Model', () => {
             price: 4 
         });
     });
-    
+
   it('should have an index method', () => {
     expect(orderstore.index).toBeDefined();
   });
@@ -50,6 +50,7 @@ describe('Order Model', () => {
         user_id: '1',
         status: 'active'
     });
+});
 
 it('index method should return a list of orders', async () => {
   const result = await orderstore.index();
@@ -59,7 +60,7 @@ it('index method should return a list of orders', async () => {
     user_id: '1'
   }]);
 });
-  
+
 it('should show the correct order', async () => {
     const result = await orderstore.show(1);
     expect(result).toEqual({
@@ -71,27 +72,28 @@ it('should show the correct order', async () => {
 
   it('addProduct method should add a product', async () => {
     const result = await orderstore.addProduct({
+      user_id: '1',
       quantity: 1,
       order_id: '1',
       product_id: '1'
     });
   expect(result).toEqual({
     id: 1,
+    user_id: 1,
+    status: 'active',
     quantity: 1,
     order_id: 1,
     product_id: 1,
-    user_id: 1,
-    status: 'active'
   });
 });
 
 it('delete method should remove the product', async () => {
-orderstore.delete(1);
-  const result = await orderstore.index()
+await orderstore.delete(1);
+  const result = await orderstore.index();
   expect(result).toEqual([]);
 });
-  
 
- 
 });
-});
+
+
+

@@ -32,6 +32,7 @@ const create = async (req: Request, res: Response) => {
 
 const addProduct = async (_req: Request, res: Response) => {
     const add: addProduct = {
+    user_id: _req.body.user,
      order_id: _req.params.id,
      product_id:  _req.body.product_id,
      quantity: _req.body.quantity,
