@@ -5,38 +5,62 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- Index 
-- Show
-- Create [token required]
-- [OPTIONAL] Top 5 most popular products 
-- [OPTIONAL] Products by category (args: product category)
+- Index: Get Products (app.get('/products', index) (http://localhost:3000/products)
+- Show- (app.get('/products/:id', show)(http://localhost:3000/products/1)
+- Create [token required] - app.post('/products', verifyAuthToken, create);
+
 
 #### Users
-- Index [token required]
-- Show [token required]
-- Create N[token required]
+- Index [token required] - http://localhost:3000/users
+- Show [token required] - http://localhost:3000/users/1
+- Create [token required]  - app.post('/users/authenticate/:id', authenticate) (http://localhost:3000/users/)
 
 #### Orders
-- Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
+- Current Order by user (args: user id)[token required]-- app.post('/orders/:id/user_id)
+
 
 ## Data Shapes
 #### Product
 -  id
 - name
 - price
-- [OPTIONAL] category
-
+```
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    price integer NOT NULL
+```
 #### User
 - id
-- firstName
-- lastName
-- password
+- username
+- password_digest
+
+```
+    id SERIAL PRIMARY KEY NOT NULL,
+    username VARCHAR(100) NOT NULL,
+    password_digest VARCHAR NOT NULL
+```
 
 #### Orders
 - id
-- id of each product in the order
-- quantity of each product in the order
+- status
 - user_id
-- status of order (active or complete)
 
+```
+    id SERIAL PRIMARY KEY,
+    status VARCHAR(15) NOT NULL,
+    user_id bigint REFERENCES users(id) NOT NULL
+```
+#### order_products
+-id
+-user_id
+-quantity
+-order_id
+-product_id
+
+```
+    id SERIAL PRIMARY KEY,
+    user_id integer NOT NULL, 
+    quantity integer NOT NULL,
+    order_id bigint REFERENCES orders(id),
+    product_id bigint REFERENCES products(id)
+```
