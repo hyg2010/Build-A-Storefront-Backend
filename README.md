@@ -37,3 +37,10 @@ Your application must make use of the following libraries:
 ## Test
 -Yarn test 
 
+##Sources 
+
+-https://knowledge.udacity.com/?nanodegree=nd0067&page=1&project=811&query=endpoint%20testing&rubric=3061&sort=RELEVANCE
+
+-https://www.npmjs.com/package/supertest
+
+
