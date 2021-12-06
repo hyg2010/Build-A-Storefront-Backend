@@ -21,7 +21,7 @@ db-migrate up
 
 - CREATE USER full_stack_user WITH PASSWORD  'password123' 
 - CREATE DATABASE store_front & CREATE DATABASE storefront_test
-- Grant store_front & storefront_test to full_stack_user s
+- Grant store_front & storefront_test to full_stack_user
 
 ## ENVIRONMENT VARIABLES:
 
