@@ -8,12 +8,17 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Index: Get Products (app.get('/products', index) (http://localhost:3000/products)
 - Show- (app.get('/products/:id', show)(http://localhost:3000/products/1)
 - Create [token required] - app.post('/products', verifyAuthToken, create);
-
+- Delete [ token required] - DELETE products/
 
 #### Users
-- Index [token required] - http://localhost:3000/users
-- Show [token required] - http://localhost:3000/users/1
-- Create [token required]  - app.post('/users/authenticate/:id', authenticate) (http://localhost:3000/users/)
+- Index [token required] 
+    GET/users
+- Show [token required]
+    GET/users/:id
+- Create [token required]
+    POST users/
+- Delete [token required]
+    Delete users/
 
 #### Orders
 - Current Order by user (args: user id)[token required]-- app.post('/orders/:id/user_id)

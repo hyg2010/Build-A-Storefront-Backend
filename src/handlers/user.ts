@@ -59,7 +59,7 @@ const userRoutes = (app: express.Application) => {
     app.get('/users/{:id}', show)
     app.post('/users', verifyAuthToken, create)
     app.post('/users/authenticate/:id', authenticate)
-    app.delete('/useres', verifyAuthToken, destroy);
+    app.delete('/users', verifyAuthToken, destroy);
 
 }
 
