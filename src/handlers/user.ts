@@ -55,8 +55,8 @@ const authenticate = async (req: Request, res: Response) => {
     res.json(deleted)
 }
 const userRoutes = (app: express.Application) => {
-    app.get('/users', index)
-    app.get('/users/{:id}', show)
+    app.get('/users', verifyAuthToken, index)
+    app.get('/users/{:id}', verifyAuthToken, show)
     app.post('/users', verifyAuthToken, create)
     app.post('/users/authenticate/:id', authenticate)
     app.delete('/users', verifyAuthToken, destroy);

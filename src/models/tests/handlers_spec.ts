@@ -46,7 +46,7 @@ describe('POST /products', function() {
       supertest(app)
         .get('/users')
         .set('Accept', 'application/json')
-        .expect(200, done);
+        .expect(401, done);
     });
 });
 
@@ -58,7 +58,7 @@ describe('POST /products', function() {
         .get('/users')
         .auth('username', 'password_digest')
         .set('Accept', 'application/json')
-        .expect(200, done);
+        .expect(401, done);
     });
 });
 

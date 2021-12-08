@@ -17,7 +17,7 @@ describe('Order Model', () => {
 
         await productstore.create({
             name: 'newproduct',
-            price: 4 
+            price: 1
         });
     });
 
