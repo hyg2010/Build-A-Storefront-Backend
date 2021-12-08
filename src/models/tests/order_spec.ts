@@ -72,23 +72,6 @@ it('should show the correct order', async () => {
     });
   });
 
-  
-  it('addProduct method should add a product', async () => {
-    const result = await orderstore.addProduct({
-      user_id: 1,
-      quantity: 1,
-      order_id: '1',
-      product_id: '1'
-    });
-  expect(result).toEqual({
-    id: 1,
-    user_id: 1,
-    quantity: 1,
-    order_id: '1',
-    product_id: '1',
-  });
-});
-
 it('delete method should remove the product', async () => {
 await orderstore.delete(1);
   const result = await orderstore.index();
