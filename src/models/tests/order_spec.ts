@@ -1,6 +1,7 @@
 import { OrderStore } from '../order';
 import { UserStore } from '../user';
 import { ProductStore } from '../product';
+import client from '../../database';
 
 
 const orderstore = new OrderStore();
@@ -20,6 +21,7 @@ describe('Order Model', () => {
             price: 1
         });
     });
+
 
   it('should have an index method', () => {
     expect(orderstore.index).toBeDefined();
@@ -61,8 +63,6 @@ it('index method should return a list of orders', async () => {
   }]);
 });
 
-
-
 it('should show the correct order', async () => {
     const result = await orderstore.show(1);
     expect(result).toEqual({
@@ -77,8 +77,11 @@ await orderstore.delete(1);
   const result = await orderstore.index();
   expect(result).toEqual([]);
 });
-
+afterAll(async () => {
+  const connection = await client.connect();
+  await connection.query('ALTER SEQUENCE users_id_seq RESTART WITH 1');
+  connection.release();
 });
-
+});
 
 
