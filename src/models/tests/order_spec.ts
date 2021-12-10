@@ -79,7 +79,13 @@ await orderstore.delete(1);
 });
 afterAll(async () => {
   const connection = await client.connect();
+  connection.query('Delete from users');
+  connection.query('Delete from products');
+  connection.query('Delete from order_products');
   await connection.query('ALTER SEQUENCE users_id_seq RESTART WITH 1');
+  await connection.query('ALTER SEQUENCE orders_id_seq RESTART WITH 1');
+  await connection.query('ALTER SEQUENCE products_id_seq RESTART WITH 1');
+  await connection.query('ALTER SEQUENCE order_products_id_seq RESTART WITH 1');
   connection.release();
 });
 });
